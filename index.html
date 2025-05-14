@@ -2,45 +2,37 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Tag des Sports – Karten</title>
+  <title>Tag des Sports 2025 – Kartenauswahl</title>
   <style>
-    body { font-family: sans-serif; text-align: center; }
-    .karte { display: none; width: 100%; height: 90vh; border: none; }
-    .active { display: block; }
-    button {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      cursor: pointer;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #f2f2f2;
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 100px 20px;
+      background: #f9f9f9;
     }
-    button:hover {
-      background-color: #ddd;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+    .button {
+      display: inline-block;
+      margin: 20px;
+      padding: 20px 40px;
+      font-size: 1.2rem;
+      background-color: #0077cc;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #005fa3;
     }
   </style>
 </head>
 <body>
-  <h1>Tag des Sports 2025 – Kartenansicht</h1>
-  <div>
-    <button onclick="zeigeKarte('zentral')">Zentrale Karte</button>
-    <button onclick="zeigeKarte('regional')">Regionale Karte</button>
-  </div>
-
-  <iframe id="zentral" class="karte active"
-src="https://umap.openstreetmap.fr/de/map/tag-des-sports-2025_946293?scrollWheelZoom=true&zoomControl=true&moreControl=true&captionMenus=true&onLoadPanel=none"
-    allowfullscreen></iframe>
-
-  <iframe id="regional" class="karte"
-src="https://umap.openstreetmap.fr/de/map/regional-tag-des-sports-2025_1221852?scrollWheelZoom=true&zoomControl=true&moreControl=true&captionMenus=true&onLoadPanel=none"
-    allowfullscreen></iframe>
-
-  <script>
-    function zeigeKarte(id) {
-      document.querySelectorAll('.karte').forEach(k => k.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-  </script>
+  <h1>Willkommen zur Kartenübersicht</h1>
+  <a href="zentral.html" class="button">Zentrale Karte anzeigen</a>
+  <a href="regional.html" class="button">Regionale Karte anzeigen</a>
 </body>
 </html>
