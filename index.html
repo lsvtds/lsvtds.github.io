@@ -53,27 +53,10 @@
           message: "Diese Website verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung machen.",
           dismiss: "Verstanden",
           link: "Mehr erfahren",
-          href: "/datenschutz"
+          href: "#"  // Oder z. B. "datenschutz.html", wenn du die Datei später hinzufügst
         }
       });
     });
   </script>
-<script>
-  window.addEventListener("load", function(){
-    window.cookieconsent.initialise({
-      palette: {
-        popup: { background: "#000" },
-        button: { background: "#f1d600" }
-      },
-      theme: "classic",
-      content: {
-        message: "Diese Website verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung machen.",
-        dismiss: "Verstanden",
-        link: "Mehr erfahren",
-        href: "/datenschutz"
-      }
-    });
-  });
-</script>
 </body>
 </html>
