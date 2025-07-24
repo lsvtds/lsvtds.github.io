@@ -5,8 +5,8 @@
   <title>Tag des Sports 2025 – Kartenauswahl</title>
 
   <!-- CookieConsent CSS & Script -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/build/cookieconsent.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/build/cookieconsent.min.js"></script>
 
   <style>
     body {
@@ -42,18 +42,21 @@
 
   <!-- CookieConsent Initialisierung -->
   <script>
-    window.addEventListener("load", function() {
-      window.cookieconsent.initialise({
+    window.addEventListener("load", function () {
+      cookieconsent.run({
+        notice_banner_type: "simple",
+        consent_type: "express",
         palette: {
-          popup: { background: "#000" },
-          button: { background: "#f1d600" }
+          popup: { background: "#000", text: "#fff" },
+          button: { background: "#f1d600", text: "#000" }
         },
-        theme: "classic",
-        content: {
-          message: "Diese Website verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung machen.",
-          dismiss: "Verstanden",
-          link: "Mehr erfahren",
-          href: "#"  // Oder z. B. "datenschutz.html", wenn du die Datei später hinzufügst
+        page_scripts: false,
+        strings: {
+          notice_banner_description: "Diese Website verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung machen.",
+          notice_banner_button_accept: "Verstanden",
+          notice_banner_button_decline: "Nur essentielle Cookies",
+          settings_modal_button_close: "Schließen",
+          settings_modal_headline: "Cookie-Einstellungen"
         }
       });
     });
