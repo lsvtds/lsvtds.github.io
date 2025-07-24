@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Tag des Sports 2025 – Kartenauswahl</title>
+
+  <!-- CookieConsent CSS & Script -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+
   <style>
     body {
       font-family: sans-serif;
@@ -37,8 +40,9 @@
   <a href="zentral.html" class="button">Zentrale Karte anzeigen</a>
   <a href="regional.html" class="button">Regionale Karte anzeigen</a>
 
+  <!-- CookieConsent Initialisierung -->
   <script>
-    window.addEventListener("load", function(){
+    window.addEventListener("load", function() {
       window.cookieconsent.initialise({
         palette: {
           popup: { background: "#000" },
@@ -49,7 +53,7 @@
           message: "Diese Website verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung machen.",
           dismiss: "Verstanden",
           link: "Mehr erfahren",
-          href: "/datenschutz"  // Optional: Hier eigenen Link einsetzen oder entfernen
+          href: "/datenschutz"
         }
       });
     });
