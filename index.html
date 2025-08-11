@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Tag des Sports 2025 – Kartenauswahl</title>
 
-  <!-- CookieConsent CSS + JS laden -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
 
@@ -42,7 +41,6 @@
       background-color: #005fa3;
     }
 
-    /* WICHTIG: Vollbild Cookie-Banner & großer Button auf Mobil */
     @media (max-width: 600px) {
       .cc-window.cc-floating.cc-type-info.cc-theme-classic {
         width: 100% !important;
@@ -79,7 +77,6 @@
 
   <script>
     window.addEventListener('load', function () {
-      // Buttons für Karten aktivieren/deaktivieren
       function setButtonsEnabled(enabled) {
         const buttons = [document.getElementById('btnZentrale'), document.getElementById('btnRegional')];
         buttons.forEach(btn => {
@@ -91,29 +88,29 @@
         });
       }
 
-      // MutationObserver für dynamisch nachgeladene Cookie-Banner
-      const targetNode = document.body;
-      const config = { childList: true, subtree: true };
-      const callback = function(mutationsList) {
-        for(const mutation of mutationsList) {
-          for(const node of mutation.addedNodes) {
-            if (node.nodeType === 1 && node.classList.contains('cc-window')) {
-              // Banner wurde neu hinzugefügt, style anwenden (CSS regelt Hauptstyling)
-            }
-          }
+      // Funktion um Button Styles nochmal zu forcieren
+      function forceStyleCookieButton() {
+        const btn = document.querySelector('.cc-btn.cc-allow');
+        if (btn) {
+          btn.style.setProperty('font-size', '3rem', 'important');
+          btn.style.setProperty('padding', '25px 40px', 'important');
+          btn.style.setProperty('width', '100%', 'important');
+          btn.style.setProperty('max-width', 'none', 'important');
+          btn.style.setProperty('box-sizing', 'border-box', 'important');
+          btn.style.setProperty('min-height', '70px', 'important');
+          btn.style.setProperty('border-radius', '0', 'important');
+          btn.style.setProperty('display', 'block', 'important');
+          btn.style.setProperty('margin', '0 auto', 'important');
         }
-      };
-      const observer = new MutationObserver(callback);
-      observer.observe(targetNode, config);
+      }
 
-      // Initial Button-Status setzen
+      // Buttons initial aktivieren/deaktivieren
       if (localStorage.getItem('cookieConsent') === 'true') {
         setButtonsEnabled(true);
       } else {
         setButtonsEnabled(false);
       }
 
-      // CookieConsent initialisieren
       window.cookieconsent.initialise({
         palette: {
           popup: { background: "#004f9f", text: "#ffffff" },
@@ -127,6 +124,14 @@
           link: "Mehr erfahren",
           href: "/datenschutz.html"
         },
+        onInitialise: function () {
+          if (this.hasConsented()) {
+            localStorage.setItem('cookieConsent', 'true');
+            setButtonsEnabled(true);
+          }
+          // direkt nach Initialisierung Styles forcieren
+          forceStyleCookieButton();
+        },
         onStatusChange: function () {
           if (this.hasConsented()) {
             localStorage.setItem('cookieConsent', 'true');
@@ -135,14 +140,18 @@
             localStorage.setItem('cookieConsent', 'false');
             setButtonsEnabled(false);
           }
+          // Styles nach jeder Statusänderung forcieren
+          forceStyleCookieButton();
         },
-        onInitialise: function () {
-          if (this.hasConsented()) {
-            localStorage.setItem('cookieConsent', 'true');
-            setButtonsEnabled(true);
-          }
+        onPopupOpen: function () {
+          // Styles auch öffnen forcieren
+          forceStyleCookieButton();
         }
       });
+
+      // Falls Banner schon da ist (bei reload), Styles forcieren
+      forceStyleCookieButton();
+
     });
   </script>
 </body>
