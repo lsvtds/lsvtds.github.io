@@ -50,9 +50,16 @@
       background-color: #005fa3;
     }
 
-    /* Mobile Styles */
+    /* Größere Buttons auf der Seite mobil */
     @media (max-width: 786px) {
-      /* Cookie Banner */
+      .button {
+        font-size: 1.4rem;
+        padding: 20px 40px;
+      }
+    }
+
+    /* Cookie Banner kleiner und kompakter auf kleinen Bildschirmen */
+    @media (max-width: 600px) {
       .cc-window.cc-floating {
         width: 100% !important;
         max-width: 100% !important;
@@ -69,21 +76,15 @@
       }
       .cc-btn.cc-allow,
       .cc-btn.cc-dismiss {
-        font-size: 2rem !important;
-        padding: 20px 30px !important;
+        font-size: 1.6rem !important;
+        padding: 15px 25px !important;
         width: 100% !important;
         max-width: none !important;
         box-sizing: border-box !important;
-        min-height: 50px !important;
+        min-height: 45px !important;
         border-radius: 0 !important;
         display: block !important;
         margin: 0 auto !important;
-      }
-
-      /* Größere Buttons auf der Seite mobil */
-      .button {
-        font-size: 1.5rem;
-        padding: 30px 60px;
       }
     }
   </style>
@@ -129,35 +130,35 @@
           banner.style.setProperty('left', '0', 'important');
           banner.style.setProperty('right', '0', 'important');
           banner.style.setProperty('border-radius', '0', 'important');
-          banner.style.setProperty('padding', '1.5em', 'important');
+          banner.style.setProperty('padding', '1em', 'important');  // kleineres Padding
           banner.style.setProperty('box-sizing', 'border-box', 'important');
           banner.style.setProperty('text-align', 'center', 'important');
         }
         const message = banner?.querySelector('.cc-message');
         if (message) {
-          message.style.setProperty('font-size', '1.4rem', 'important');
+          message.style.setProperty('font-size', '1rem', 'important'); // kleinere Schrift
           message.style.setProperty('margin-bottom', '1em', 'important');
         }
         const allowBtn = document.querySelector('.cc-btn.cc-allow');
         if (allowBtn) {
-          allowBtn.style.setProperty('font-size', '3rem', 'important');
-          allowBtn.style.setProperty('padding', '25px 40px', 'important');
+          allowBtn.style.setProperty('font-size', '1.6rem', 'important');  // kleinere Schrift
+          allowBtn.style.setProperty('padding', '15px 25px', 'important'); // kleineres Padding
           allowBtn.style.setProperty('width', '100%', 'important');
           allowBtn.style.setProperty('max-width', 'none', 'important');
           allowBtn.style.setProperty('box-sizing', 'border-box', 'important');
-          allowBtn.style.setProperty('min-height', '70px', 'important');
+          allowBtn.style.setProperty('min-height', '45px', 'important');
           allowBtn.style.setProperty('border-radius', '0', 'important');
           allowBtn.style.setProperty('display', 'block', 'important');
           allowBtn.style.setProperty('margin', '0 auto', 'important');
         }
         const dismissBtn = document.querySelector('.cc-btn.cc-dismiss');
         if (dismissBtn) {
-          dismissBtn.style.setProperty('font-size', '3rem', 'important');
-          dismissBtn.style.setProperty('padding', '25px 40px', 'important');
+          dismissBtn.style.setProperty('font-size', '1.6rem', 'important');  // kleinere Schrift
+          dismissBtn.style.setProperty('padding', '15px 25px', 'important'); // kleineres Padding
           dismissBtn.style.setProperty('width', '100%', 'important');
           dismissBtn.style.setProperty('max-width', 'none', 'important');
           dismissBtn.style.setProperty('box-sizing', 'border-box', 'important');
-          dismissBtn.style.setProperty('min-height', '70px', 'important');
+          dismissBtn.style.setProperty('min-height', '45px', 'important');
           dismissBtn.style.setProperty('border-radius', '0', 'important');
           dismissBtn.style.setProperty('display', 'block', 'important');
           dismissBtn.style.setProperty('margin', '0 auto', 'important');
