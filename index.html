@@ -47,6 +47,15 @@
       padding: 10px 20px !important;
       font-size: 1rem !important;
     }
+
+    /* Mobile größere Cookie-Banner Buttons */
+    @media (max-width: 600px) {
+      .cc_div .cc_btn {
+        font-size: 1.5rem !important;
+        padding: 15px 30px !important;
+        min-width: 120px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -107,7 +116,6 @@
             setButtonsEnabled(false);
           }
         },
-        // Für den Fall, dass der Nutzer direkt zustimmt (z.B. beim ersten Laden)
         onInitialise: function(status) {
           if (this.hasConsented()) {
             localStorage.setItem('cookieConsent', 'true');
