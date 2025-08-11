@@ -41,7 +41,6 @@
       background-color: #005fa3;
     }
 
-    /* Grund CSS für mobile volle Breite */
     @media (max-width: 600px) {
       .cc-window.cc-floating {
         width: 100% !important;
@@ -68,6 +67,17 @@
         display: block !important;
         margin: 0 auto !important;
       }
+      .cc-btn.cc-dismiss {
+        font-size: 3rem !important;
+        padding: 25px 40px !important;
+        width: 100% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+        min-height: 70px !important;
+        border-radius: 0 !important;
+        display: block !important;
+        margin: 0 auto !important;
+      }
     }
   </style>
 </head>
@@ -78,7 +88,6 @@
 
   <script>
     window.addEventListener('load', function () {
-      // Buttons aktivieren/deaktivieren
       function setButtonsEnabled(enabled) {
         const buttons = [document.getElementById('btnZentrale'), document.getElementById('btnRegional')];
         buttons.forEach(btn => {
@@ -90,7 +99,6 @@
         });
       }
 
-      // Styles mit !important auf Banner und Button erzwingen
       function forceBannerStyles() {
         const banner = document.querySelector('.cc-window.cc-floating');
         if (banner) {
@@ -108,26 +116,37 @@
           message.style.setProperty('font-size', '1.4rem', 'important');
           message.style.setProperty('margin-bottom', '1em', 'important');
         }
-        const btn = document.querySelector('.cc-btn.cc-allow');
-        if (btn) {
-          btn.style.setProperty('font-size', '3rem', 'important');
-          btn.style.setProperty('padding', '25px 40px', 'important');
-          btn.style.setProperty('width', '100%', 'important');
-          btn.style.setProperty('max-width', 'none', 'important');
-          btn.style.setProperty('box-sizing', 'border-box', 'important');
-          btn.style.setProperty('min-height', '70px', 'important');
-          btn.style.setProperty('border-radius', '0', 'important');
-          btn.style.setProperty('display', 'block', 'important');
-          btn.style.setProperty('margin', '0 auto', 'important');
+        const allowBtn = document.querySelector('.cc-btn.cc-allow');
+        if (allowBtn) {
+          allowBtn.style.setProperty('font-size', '3rem', 'important');
+          allowBtn.style.setProperty('padding', '25px 40px', 'important');
+          allowBtn.style.setProperty('width', '100%', 'important');
+          allowBtn.style.setProperty('max-width', 'none', 'important');
+          allowBtn.style.setProperty('box-sizing', 'border-box', 'important');
+          allowBtn.style.setProperty('min-height', '70px', 'important');
+          allowBtn.style.setProperty('border-radius', '0', 'important');
+          allowBtn.style.setProperty('display', 'block', 'important');
+          allowBtn.style.setProperty('margin', '0 auto', 'important');
+        }
+        const dismissBtn = document.querySelector('.cc-btn.cc-dismiss');
+        if (dismissBtn) {
+          dismissBtn.style.setProperty('font-size', '3rem', 'important');
+          dismissBtn.style.setProperty('padding', '25px 40px', 'important');
+          dismissBtn.style.setProperty('width', '100%', 'important');
+          dismissBtn.style.setProperty('max-width', 'none', 'important');
+          dismissBtn.style.setProperty('box-sizing', 'border-box', 'important');
+          dismissBtn.style.setProperty('min-height', '70px', 'important');
+          dismissBtn.style.setProperty('border-radius', '0', 'important');
+          dismissBtn.style.setProperty('display', 'block', 'important');
+          dismissBtn.style.setProperty('margin', '0 auto', 'important');
         }
       }
 
-      // MutationObserver auf Body, um Banner-Erstellung abzufangen
+      // MutationObserver um Banner-Neuerstellung zu erkennen
       const observer = new MutationObserver((mutations) => {
         mutations.forEach(mutation => {
           mutation.addedNodes.forEach(node => {
             if (node.nodeType === 1 && node.classList.contains('cc-window')) {
-              // Banner wurde hinzugefügt -> Styles setzen
               forceBannerStyles();
             }
           });
@@ -135,7 +154,6 @@
       });
       observer.observe(document.body, { childList: true, subtree: true });
 
-      // Buttons initial setzen
       if (localStorage.getItem('cookieConsent') === 'true') {
         setButtonsEnabled(true);
       } else {
@@ -177,7 +195,6 @@
         }
       });
 
-      // Falls Banner bereits da ist (Reload), Styles forcieren
       forceBannerStyles();
     });
   </script>
