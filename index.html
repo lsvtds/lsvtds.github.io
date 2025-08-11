@@ -61,7 +61,7 @@
         });
       }
 
-      function enlargeCookieButton() {
+      function styleCookieButton() {
         const btn = document.querySelector('.cc-btn.cc-dismiss') || document.querySelector('.cc-btn.cc-accept');
         if (btn) {
           btn.style.fontSize = '3rem';
@@ -70,7 +70,9 @@
           btn.style.maxWidth = 'none';
           btn.style.boxSizing = 'border-box';
           btn.style.minHeight = '60px';
+          return true;
         }
+        return false;
       }
 
       // Buttons initial setzen
@@ -101,16 +103,24 @@
             localStorage.setItem('cookieConsent', 'false');
             setButtonsEnabled(false);
           }
-          enlargeCookieButton();
+          tryStyleButton();
         },
         onInitialise: function (status) {
           if (this.hasConsented()) {
             localStorage.setItem('cookieConsent', 'true');
             setButtonsEnabled(true);
           }
-          enlargeCookieButton();
+          tryStyleButton();
         }
       });
+
+      // Versuche den Button mehrfach zu stylen (falls er später nachgeladen wird)
+      let tries = 0;
+      function tryStyleButton() {
+        if (styleCookieButton() || tries > 10) return;
+        tries++;
+        setTimeout(tryStyleButton, 300);
+      }
     });
   </script>
 </body>
