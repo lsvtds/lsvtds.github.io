@@ -4,9 +4,36 @@
   <meta charset="UTF-8">
   <title>Tag des Sports 2025 – Kartenauswahl</title>
 
-  <!-- CookieConsent CSS & Script -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/build/cookieconsent.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/build/cookieconsent.min.js"></script>
+ <!-- CookieConsent CSS + JS laden -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+
+<!-- CookieBanner Initialisierung -->
+<script>
+window.addEventListener('load', function(){
+  window.cookieconsent.initialise({
+    palette: {
+      popup: {
+        background: "#004f9f", /* Dunkelblau passend zu TDS */
+        text: "#ffffff"
+      },
+      button: {
+        background: "#007bff", /* Helles Blau für Buttons */
+        text: "#ffffff"
+      }
+    },
+    theme: "classic",
+    position: "bottom", /* Oder 'top' falls du es oben haben willst */
+    content: {
+      message: "Diese Website verwendet Cookies, um Ihnen die bestmögliche Nutzung zu ermöglichen.",
+      dismiss: "Verstanden",
+      link: "Mehr erfahren",
+      href: "/datenschutz.html"
+    }
+  });
+});
+</script>
+
 
   <style>
     body {
@@ -33,6 +60,12 @@
     .button:hover {
       background-color: #005fa3;
     }
+    /* Cookie Banner Buttons angleichen */
+    .cc_div .cc_btn {
+      border-radius: 10px !important;
+      padding: 10px 20px !important;
+      font-size: 1rem !important;
+    }
   </style>
 </head>
 <body>
@@ -47,8 +80,8 @@
         notice_banner_type: "simple",
         consent_type: "express",
         palette: {
-          popup: { background: "#000", text: "#fff" },
-          button: { background: "#f1d600", text: "#000" }
+          popup: { background: "#f9f9f9", text: "#000" },
+          button: { background: "#0077cc", text: "#fff" }
         },
         page_scripts: false,
         strings: {
@@ -63,3 +96,4 @@
   </script>
 </body>
 </html>
+
