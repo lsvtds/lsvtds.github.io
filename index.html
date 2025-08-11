@@ -112,8 +112,10 @@
             localStorage.setItem('cookieConsent', 'true');
             setButtonsEnabled(true);
           }
-          // Button nachladen und Größe anpassen
-          setTimeout(() => {
+          // Button Style mehrfach prüfen und anpassen
+          let tries = 0;
+          const maxTries = 10;
+          const interval = setInterval(() => {
             const btn = document.querySelector('.cc_btn.cc_btn_accept');
             if (btn) {
               btn.style.fontSize = '2.5rem';
@@ -121,8 +123,13 @@
               btn.style.width = '100%';
               btn.style.maxWidth = 'none';
               btn.style.boxSizing = 'border-box';
+              clearInterval(interval);
             }
-          }, 100);
+            tries++;
+            if (tries >= maxTries) {
+              clearInterval(interval);
+            }
+          }, 200);
         }
       });
     });
