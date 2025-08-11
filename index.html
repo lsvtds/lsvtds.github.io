@@ -41,25 +41,6 @@
     .button:hover.enabled {
       background-color: #005fa3;
     }
-
-    /* Cookie Banner Buttons angleichen */
-    .cc_div .cc_btn {
-      border-radius: 10px !important;
-      padding: 10px 20px !important;
-      font-size: 1rem !important;
-    }
-
-    /* Mobile größere Cookie-Banner Buttons */
-    @media (max-width: 600px) {
-      .cc-compliance .cc-btn.cc-accept {
-        font-size: 3rem !important;
-        padding: 25px 30px !important;
-        width: 100% !important;
-        max-width: none !important;
-        box-sizing: border-box !important;
-        min-height: 60px !important;
-      }
-    }
   </style>
 </head>
 <body>
@@ -80,6 +61,19 @@
         });
       }
 
+      function enlargeCookieButton() {
+        const btn = document.querySelector('.cc-btn.cc-accept');
+        if (btn) {
+          btn.style.fontSize = '3rem';
+          btn.style.padding = '25px 30px';
+          btn.style.width = '100%';
+          btn.style.maxWidth = 'none';
+          btn.style.boxSizing = 'border-box';
+          btn.style.minHeight = '60px';
+        }
+      }
+
+      // Buttons initial setzen
       if (localStorage.getItem('cookieConsent') === 'true') {
         setButtonsEnabled(true);
       } else {
@@ -107,31 +101,14 @@
             localStorage.setItem('cookieConsent', 'false');
             setButtonsEnabled(false);
           }
+          enlargeCookieButton();
         },
         onInitialise: function (status) {
           if (this.hasConsented()) {
             localStorage.setItem('cookieConsent', 'true');
             setButtonsEnabled(true);
           }
-          // Sicherstellen, dass der Button auch per JS vergrößert wird, falls nötig
-          let tries = 0;
-          const maxTries = 10;
-          const interval = setInterval(() => {
-            const btn = document.querySelector('.cc-btn.cc-accept');
-            if (btn) {
-              btn.style.fontSize = '3rem';
-              btn.style.padding = '25px 30px';
-              btn.style.width = '100%';
-              btn.style.maxWidth = 'none';
-              btn.style.boxSizing = 'border-box';
-              btn.style.minHeight = '60px';
-              clearInterval(interval);
-            }
-            tries++;
-            if (tries >= maxTries) {
-              clearInterval(interval);
-            }
-          }, 200);
+          enlargeCookieButton();
         }
       });
     });
