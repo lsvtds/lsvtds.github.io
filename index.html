@@ -18,9 +18,17 @@
       font-size: 2rem;
       margin-bottom: 40px;
     }
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #004f9f;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
     .button {
       display: inline-block;
-      margin: 20px;
+      margin: 0 0.5rem;
       padding: 20px 40px;
       font-size: 1.2rem;
       background-color: #0077cc;
@@ -56,17 +64,7 @@
         font-size: 1.4rem !important;
         margin-bottom: 1em !important;
       }
-      .cc-btn.cc-allow {
-        font-size: 3rem !important;
-        padding: 25px 40px !important;
-        width: 100% !important;
-        max-width: none !important;
-        box-sizing: border-box !important;
-        min-height: 70px !important;
-        border-radius: 0 !important;
-        display: block !important;
-        margin: 0 auto !important;
-      }
+      .cc-btn.cc-allow,
       .cc-btn.cc-dismiss {
         font-size: 3rem !important;
         padding: 25px 40px !important;
@@ -83,18 +81,33 @@
 </head>
 <body>
   <h1>Willkommen zur digitalen Geländeübersicht für den Tag des Sports 2025</h1>
-  <a href="zentral.html" id="btnZentrale" class="button">Zentrale Karte anzeigen</a>
-  <a href="regional.html" id="btnRegional" class="button">Regionale Karte anzeigen</a>
+
+  <section>
+    <h2>Zentral</h2>
+    <a href="zentral.html" id="btnZentrale" class="button">Zentrale Karte anzeigen</a>
+    <a href="https://lsvtds.github.io/vereinsliste/" id="btnVereinsliste" class="button">Vereinsliste</a>
+  </section>
+
+  <section>
+    <h2>Regional</h2>
+    <a href="regional.html" id="btnRegional" class="button">Regionale Karte anzeigen</a>
+  </section>
 
   <script>
     window.addEventListener('load', function () {
       function setButtonsEnabled(enabled) {
-        const buttons = [document.getElementById('btnZentrale'), document.getElementById('btnRegional')];
+        const buttons = [
+          document.getElementById('btnZentrale'),
+          document.getElementById('btnRegional'),
+          document.getElementById('btnVereinsliste')
+        ];
         buttons.forEach(btn => {
-          if (enabled) {
-            btn.classList.add('enabled');
-          } else {
-            btn.classList.remove('enabled');
+          if (btn) {
+            if (enabled) {
+              btn.classList.add('enabled');
+            } else {
+              btn.classList.remove('enabled');
+            }
           }
         });
       }
@@ -142,7 +155,6 @@
         }
       }
 
-      // MutationObserver um Banner-Neuerstellung zu erkennen
       const observer = new MutationObserver((mutations) => {
         mutations.forEach(mutation => {
           mutation.addedNodes.forEach(node => {
