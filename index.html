@@ -51,12 +51,13 @@
 
     /* Mobile größere Cookie-Banner Buttons */
     @media (max-width: 600px) {
-      .cc_div .cc_btn {
-        font-size: 2.5rem !important;
-        padding: 20px !important;
+      .cc-compliance .cc-btn.cc-accept {
+        font-size: 3rem !important;
+        padding: 25px 30px !important;
         width: 100% !important;
         max-width: none !important;
         box-sizing: border-box !important;
+        min-height: 60px !important;
       }
     }
   </style>
@@ -112,17 +113,18 @@
             localStorage.setItem('cookieConsent', 'true');
             setButtonsEnabled(true);
           }
-          // Button Style mehrfach prüfen und anpassen
+          // Sicherstellen, dass der Button auch per JS vergrößert wird, falls nötig
           let tries = 0;
           const maxTries = 10;
           const interval = setInterval(() => {
-            const btn = document.querySelector('.cc_btn.cc_btn_accept');
+            const btn = document.querySelector('.cc-btn.cc-accept');
             if (btn) {
-              btn.style.fontSize = '2.5rem';
-              btn.style.padding = '20px';
+              btn.style.fontSize = '3rem';
+              btn.style.padding = '25px 30px';
               btn.style.width = '100%';
               btn.style.maxWidth = 'none';
               btn.style.boxSizing = 'border-box';
+              btn.style.minHeight = '60px';
               clearInterval(interval);
             }
             tries++;
