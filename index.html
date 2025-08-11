@@ -42,34 +42,34 @@
       background-color: #005fa3;
     }
 
-/* Vollbild Cookie-Banner auf Mobil */
-@media (max-width: 600px) {
-  .cc-window.cc-floating.cc-type-info.cc-theme-classic {
-    width: 100% !important;
-    max-width: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    border-radius: 0 !important;
-    padding: 20px !important;
-    box-sizing: border-box !important;
-    text-align: center !important;
-  }
-  .cc-window.cc-floating.cc-type-info.cc-theme-classic .cc-message {
-    font-size: 1.4rem !important;
-    margin-bottom: 1em !important;
-  }
-  .cc-btn.cc-allow {
-    font-size: 3rem !important;
-    padding: 25px 40px !important;
-    width: 100% !important;
-    max-width: none !important;
-    box-sizing: border-box !important;
-    min-height: 70px !important;
-    border-radius: 0 !important;
-    display: block !important;
-    margin: 0 auto !important;
-  }
-}
+    /* WICHTIG: Vollbild Cookie-Banner & großer Button auf Mobil */
+    @media (max-width: 600px) {
+      .cc-window.cc-floating.cc-type-info.cc-theme-classic {
+        width: 100% !important;
+        max-width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        border-radius: 0 !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+      }
+      .cc-window.cc-floating.cc-type-info.cc-theme-classic .cc-message {
+        font-size: 1.4rem !important;
+        margin-bottom: 1em !important;
+      }
+      .cc-btn.cc-allow {
+        font-size: 3rem !important;
+        padding: 25px 40px !important;
+        width: 100% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+        min-height: 70px !important;
+        border-radius: 0 !important;
+        display: block !important;
+        margin: 0 auto !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -91,22 +91,6 @@
         });
       }
 
-      // Cookie-Banner Buttons stylen (korrekte Klasse .cc-allow)
-      function styleCookieButtons() {
-        const btns = document.querySelectorAll('.cc-btn.cc-allow');
-        btns.forEach(btn => {
-          btn.style.fontSize = '2.8rem';
-          btn.style.padding = '25px 40px';
-          btn.style.width = '100%';
-          btn.style.maxWidth = 'none';
-          btn.style.boxSizing = 'border-box';
-          btn.style.minHeight = '70px';
-          btn.style.borderRadius = '0';
-          btn.style.display = 'block';
-          btn.style.margin = '0 auto';
-        });
-      }
-
       // MutationObserver für dynamisch nachgeladene Cookie-Banner
       const targetNode = document.body;
       const config = { childList: true, subtree: true };
@@ -114,7 +98,7 @@
         for(const mutation of mutationsList) {
           for(const node of mutation.addedNodes) {
             if (node.nodeType === 1 && node.classList.contains('cc-window')) {
-              styleCookieButtons();
+              // Banner wurde neu hinzugefügt, style anwenden (CSS regelt Hauptstyling)
             }
           }
         }
@@ -151,19 +135,14 @@
             localStorage.setItem('cookieConsent', 'false');
             setButtonsEnabled(false);
           }
-          styleCookieButtons();
         },
         onInitialise: function () {
           if (this.hasConsented()) {
             localStorage.setItem('cookieConsent', 'true');
             setButtonsEnabled(true);
           }
-          styleCookieButtons();
         }
       });
-
-      // Falls Banner schon da ist, direkt stylen
-      styleCookieButtons();
     });
   </script>
 </body>
