@@ -41,32 +41,34 @@
       background-color: #005fa3;
     }
 
-   @media (max-width: 600px) {
-  .cc-window.cc-floating {
-    max-width: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    border-radius: 0 !important;
-    padding: 1.5em !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-  }
-  .cc-window.cc-floating .cc-message {
-    font-size: 1.4rem !important;
-    margin-bottom: 1em !important;
-  }
-  .cc-btn.cc-allow {
-    font-size: 3rem !important;
-    padding: 25px 40px !important;
-    width: 100% !important;
-    max-width: none !important;
-    box-sizing: border-box !important;
-    min-height: 70px !important;
-    border-radius: 0 !important;
-    display: block !important;
-    margin: 0 auto !important;
-  }
-}
+    /* Grund CSS für mobile volle Breite */
+    @media (max-width: 600px) {
+      .cc-window.cc-floating {
+        width: 100% !important;
+        max-width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        border-radius: 0 !important;
+        padding: 1.5em !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+      }
+      .cc-window.cc-floating .cc-message {
+        font-size: 1.4rem !important;
+        margin-bottom: 1em !important;
+      }
+      .cc-btn.cc-allow {
+        font-size: 3rem !important;
+        padding: 25px 40px !important;
+        width: 100% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+        min-height: 70px !important;
+        border-radius: 0 !important;
+        display: block !important;
+        margin: 0 auto !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -76,6 +78,7 @@
 
   <script>
     window.addEventListener('load', function () {
+      // Buttons aktivieren/deaktivieren
       function setButtonsEnabled(enabled) {
         const buttons = [document.getElementById('btnZentrale'), document.getElementById('btnRegional')];
         buttons.forEach(btn => {
@@ -87,8 +90,24 @@
         });
       }
 
-      // Funktion um Button Styles nochmal zu forcieren
-      function forceStyleCookieButton() {
+      // Styles mit !important auf Banner und Button erzwingen
+      function forceBannerStyles() {
+        const banner = document.querySelector('.cc-window.cc-floating');
+        if (banner) {
+          banner.style.setProperty('width', '100%', 'important');
+          banner.style.setProperty('max-width', '100%', 'important');
+          banner.style.setProperty('left', '0', 'important');
+          banner.style.setProperty('right', '0', 'important');
+          banner.style.setProperty('border-radius', '0', 'important');
+          banner.style.setProperty('padding', '1.5em', 'important');
+          banner.style.setProperty('box-sizing', 'border-box', 'important');
+          banner.style.setProperty('text-align', 'center', 'important');
+        }
+        const message = banner?.querySelector('.cc-message');
+        if (message) {
+          message.style.setProperty('font-size', '1.4rem', 'important');
+          message.style.setProperty('margin-bottom', '1em', 'important');
+        }
         const btn = document.querySelector('.cc-btn.cc-allow');
         if (btn) {
           btn.style.setProperty('font-size', '3rem', 'important');
@@ -103,7 +122,20 @@
         }
       }
 
-      // Buttons initial aktivieren/deaktivieren
+      // MutationObserver auf Body, um Banner-Erstellung abzufangen
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach(mutation => {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === 1 && node.classList.contains('cc-window')) {
+              // Banner wurde hinzugefügt -> Styles setzen
+              forceBannerStyles();
+            }
+          });
+        });
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Buttons initial setzen
       if (localStorage.getItem('cookieConsent') === 'true') {
         setButtonsEnabled(true);
       } else {
@@ -128,8 +160,7 @@
             localStorage.setItem('cookieConsent', 'true');
             setButtonsEnabled(true);
           }
-          // direkt nach Initialisierung Styles forcieren
-          forceStyleCookieButton();
+          forceBannerStyles();
         },
         onStatusChange: function () {
           if (this.hasConsented()) {
@@ -139,18 +170,15 @@
             localStorage.setItem('cookieConsent', 'false');
             setButtonsEnabled(false);
           }
-          // Styles nach jeder Statusänderung forcieren
-          forceStyleCookieButton();
+          forceBannerStyles();
         },
         onPopupOpen: function () {
-          // Styles auch öffnen forcieren
-          forceStyleCookieButton();
+          forceBannerStyles();
         }
       });
 
-      // Falls Banner schon da ist (bei reload), Styles forcieren
-      forceStyleCookieButton();
-
+      // Falls Banner bereits da ist (Reload), Styles forcieren
+      forceBannerStyles();
     });
   </script>
 </body>
