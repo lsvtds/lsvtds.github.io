@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Tag des Sports 2025 – Kartenauswahl</title>
 
   <!-- CookieConsent CSS + JS laden -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
 
   <style>
@@ -29,9 +29,9 @@
       text-decoration: none;
       border-radius: 10px;
       transition: background-color 0.3s;
-      cursor: not-allowed; /* Disabled Style */
+      cursor: not-allowed;
       opacity: 0.6;
-      pointer-events: none; /* Klicks blockieren */
+      pointer-events: none;
     }
     .button.enabled {
       cursor: pointer;
@@ -41,6 +41,7 @@
     .button:hover.enabled {
       background-color: #005fa3;
     }
+
     /* Cookie Banner Buttons angleichen */
     .cc_div .cc_btn {
       border-radius: 10px !important;
@@ -49,16 +50,15 @@
     }
 
     /* Mobile größere Cookie-Banner Buttons */
-@media (max-width: 600px) {
-  .cc_div .cc_btn {
-    font-size: 2.5rem !important;
-    padding: 20px !important;
-    width: 100% !important;       /* volle Breite */
-    max-width: none !important;   /* keine max-Breite */
-    box-sizing: border-box !important;
-  }
-}
-
+    @media (max-width: 600px) {
+      .cc_div .cc_btn {
+        font-size: 2.5rem !important;
+        padding: 20px !important;
+        width: 100% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -66,11 +66,8 @@
   <a href="zentral.html" id="btnZentrale" class="button">Zentrale Karte anzeigen</a>
   <a href="regional.html" id="btnRegional" class="button">Regionale Karte anzeigen</a>
 
-  <!-- CookieConsent Initialisierung -->
   <script>
-    window.addEventListener('load', function() {
-
-      // Funktion, um Buttons zu aktivieren oder deaktivieren
+    window.addEventListener('load', function () {
       function setButtonsEnabled(enabled) {
         const buttons = [document.getElementById('btnZentrale'), document.getElementById('btnRegional')];
         buttons.forEach(btn => {
@@ -82,8 +79,7 @@
         });
       }
 
-      // Prüfen, ob der Nutzer schon zugestimmt hat (localStorage)
-      if(localStorage.getItem('cookieConsent') === 'true') {
+      if (localStorage.getItem('cookieConsent') === 'true') {
         setButtonsEnabled(true);
       } else {
         setButtonsEnabled(false);
@@ -91,14 +87,8 @@
 
       window.cookieconsent.initialise({
         palette: {
-          popup: {
-            background: "#004f9f",
-            text: "#ffffff"
-          },
-          button: {
-            background: "#007bff",
-            text: "#ffffff"
-          }
+          popup: { background: "#004f9f", text: "#ffffff" },
+          button: { background: "#007bff", text: "#ffffff" }
         },
         theme: "classic",
         position: "bottom",
@@ -108,22 +98,31 @@
           link: "Mehr erfahren",
           href: "/datenschutz.html"
         },
-        onStatusChange: function(status) {
+        onStatusChange: function (status) {
           if (this.hasConsented()) {
-            // Zustimmung gegeben
             localStorage.setItem('cookieConsent', 'true');
             setButtonsEnabled(true);
           } else {
-            // Keine Zustimmung oder abgelehnt
             localStorage.setItem('cookieConsent', 'false');
             setButtonsEnabled(false);
           }
         },
-        onInitialise: function(status) {
+        onInitialise: function (status) {
           if (this.hasConsented()) {
             localStorage.setItem('cookieConsent', 'true');
             setButtonsEnabled(true);
           }
+          // Button nachladen und Größe anpassen
+          setTimeout(() => {
+            const btn = document.querySelector('.cc_btn.cc_btn_accept');
+            if (btn) {
+              btn.style.fontSize = '2.5rem';
+              btn.style.padding = '20px';
+              btn.style.width = '100%';
+              btn.style.maxWidth = 'none';
+              btn.style.boxSizing = 'border-box';
+            }
+          }, 100);
         }
       });
     });
