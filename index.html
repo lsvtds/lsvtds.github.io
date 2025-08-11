@@ -42,7 +42,6 @@
       background-color: #005fa3;
     }
 
-    /* Mobile: Vollbild-Banner, zentrierter und größerer Text & Button */
     @media (max-width: 600px) {
       .cc-window.cc-floating.cc-type-info.cc-theme-classic {
         width: 100% !important;
@@ -70,6 +69,7 @@
 
   <script>
     window.addEventListener('load', function () {
+      // Buttons für Karten aktivieren/deaktivieren
       function setButtonsEnabled(enabled) {
         const buttons = [document.getElementById('btnZentrale'), document.getElementById('btnRegional')];
         buttons.forEach(btn => {
@@ -81,8 +81,9 @@
         });
       }
 
+      // Cookie-Banner Buttons stylen (korrekte Klasse .cc-allow)
       function styleCookieButtons() {
-        const btns = document.querySelectorAll('.cc-btn.cc-dismiss, .cc-btn.cc-accept');
+        const btns = document.querySelectorAll('.cc-btn.cc-allow');
         btns.forEach(btn => {
           btn.style.fontSize = '2.8rem';
           btn.style.padding = '25px 40px';
@@ -96,31 +97,29 @@
         });
       }
 
-      // MutationObserver, um auf Änderungen im Banner zu reagieren
+      // MutationObserver für dynamisch nachgeladene Cookie-Banner
       const targetNode = document.body;
       const config = { childList: true, subtree: true };
       const callback = function(mutationsList) {
         for(const mutation of mutationsList) {
-          if (mutation.addedNodes.length) {
-            mutation.addedNodes.forEach(node => {
-              if (node.nodeType === 1 && node.classList.contains('cc-window')) {
-                // Banner wurde neu hinzugefügt, style anwenden
-                styleCookieButtons();
-              }
-            });
+          for(const node of mutation.addedNodes) {
+            if (node.nodeType === 1 && node.classList.contains('cc-window')) {
+              styleCookieButtons();
+            }
           }
         }
       };
       const observer = new MutationObserver(callback);
       observer.observe(targetNode, config);
 
-      // Buttons initial setzen
+      // Initial Button-Status setzen
       if (localStorage.getItem('cookieConsent') === 'true') {
         setButtonsEnabled(true);
       } else {
         setButtonsEnabled(false);
       }
 
+      // CookieConsent initialisieren
       window.cookieconsent.initialise({
         palette: {
           popup: { background: "#004f9f", text: "#ffffff" },
@@ -153,7 +152,7 @@
         }
       });
 
-      // Falls Banner schon da ist, style sofort
+      // Falls Banner schon da ist, direkt stylen
       styleCookieButtons();
     });
   </script>
