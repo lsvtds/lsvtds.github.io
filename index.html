@@ -62,7 +62,7 @@
       }
 
       function enlargeCookieButton() {
-        const btn = document.querySelector('.cc-btn.cc-accept');
+        const btn = document.querySelector('.cc-btn.cc-dismiss') || document.querySelector('.cc-btn.cc-accept');
         if (btn) {
           btn.style.fontSize = '3rem';
           btn.style.padding = '25px 30px';
