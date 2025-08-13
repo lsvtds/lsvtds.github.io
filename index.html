@@ -7,47 +7,7 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
-/* Smartphone Styles */
-@media (max-width: 480px) {
-  /* Body Padding */
-  body {
-    padding: 15px 10px;
-  }
 
-  /* Überschriften kompakter */
-  h1 {
-    font-size: 1.6rem;
-    margin-bottom: 25px;
-  }
-  h2 {
-    font-size: 1.3rem;
-    margin-bottom: 0.8rem;
-  }
-
-  /* Buttons auf der Seite */
-  .button {
-    font-size: 1.2rem;
-    padding: 18px 25px;
-    width: 100%;
-    max-width: none;
-    margin: 8px 0;
-    box-sizing: border-box;
-  }
-
-  /* Cookie Banner */
-  .cc-window.cc-floating {
-    padding: 1em !important;
-  }
-  .cc-window.cc-floating .cc-message {
-    font-size: 0.95rem !important;
-  }
-  .cc-btn.cc-allow,
-  .cc-btn.cc-dismiss {
-    font-size: 1.4rem !important;
-    padding: 15px 20px !important;
-    min-height: 44px !important; /* Fingerfreundlich */
-  }
-}
   <style>
     body {
       font-family: sans-serif;
@@ -90,7 +50,7 @@
       background-color: #005fa3;
     }
 
-    /* Mobile Styles */
+    /* Mobile Styles (Tablet) */
     @media (max-width: 786px) {
       /* Cookie Banner */
       .cc-window.cc-floating {
@@ -130,6 +90,48 @@
       body {
         padding-top: 20px;
         padding-bottom: 40px;
+      }
+    }
+
+    /* Smartphone Styles */
+    @media (max-width: 480px) {
+      /* Body Padding */
+      body {
+        padding: 15px 10px;
+      }
+
+      /* Überschriften kompakter */
+      h1 {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+      }
+      h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+      }
+
+      /* Buttons auf der Seite */
+      .button {
+        font-size: 1.2rem;
+        padding: 18px 25px;
+        width: 100%;
+        max-width: none;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+
+      /* Cookie Banner */
+      .cc-window.cc-floating {
+        padding: 1em !important;
+      }
+      .cc-window.cc-floating .cc-message {
+        font-size: 0.95rem !important;
+      }
+      .cc-btn.cc-allow,
+      .cc-btn.cc-dismiss {
+        font-size: 1.4rem !important;
+        padding: 15px 20px !important;
+        min-height: 44px !important; /* Fingerfreundlich */
       }
     }
   </style>
