@@ -9,24 +9,31 @@
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
 
   <style>
+    /* =========================
+       Grundstyles (Desktop)
+       ========================= */
     body {
       font-family: sans-serif;
       text-align: center;
-      padding: 40px 20px; /* kleinerer Abstand oben */
+      padding: 40px 20px;
       background: #f9f9f9;
     }
+
     h1 {
       font-size: 2rem;
       margin-bottom: 40px;
     }
+
     h2 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
       color: #004f9f;
     }
+
     section {
-      margin-bottom: 5rem; /* größerer Abstand zwischen Sektionen */
+      margin-bottom: 5rem;
     }
+
     .button {
       display: inline-block;
       margin: 0 0.5rem;
@@ -41,17 +48,31 @@
       opacity: 0.6;
       pointer-events: none;
     }
+
     .button.enabled {
       cursor: pointer;
       opacity: 1;
       pointer-events: auto;
     }
+
     .button:hover.enabled {
       background-color: #005fa3;
     }
 
-    /* Mobile Styles (Tablet) */
+    /* =========================
+       Tablet Styles (max-width: 786px)
+       ========================= */
     @media (max-width: 786px) {
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      .button {
+        font-size: 1.5rem;
+        padding: 30px 60px;
+      }
+
       /* Cookie Banner */
       .cc-window.cc-floating {
         width: 100% !important;
@@ -72,55 +93,39 @@
         font-size: 1rem !important;
         padding: 15px 25px !important;
         width: 100% !important;
-        max-width: none !important;
-        box-sizing: border-box !important;
         min-height: 40px !important;
         border-radius: 0 !important;
         display: block !important;
         margin: 0 auto !important;
       }
-
-      /* Größere Buttons auf der Seite mobil */
-      .button {
-        font-size: 1.5rem;
-        padding: 30px 60px;
-      }
-
-      /* Weniger padding oben und unten im body auf kleinen Bildschirmen */
-      body {
-        padding-top: 20px;
-        padding-bottom: 40px;
-      }
     }
 
-    /* Smartphone Styles */
+    /* =========================
+       Smartphone Styles (max-width: 480px)
+       ========================= */
     @media (max-width: 480px) {
-      /* Body Padding */
       body {
         padding: 15px 10px;
       }
 
-      /* Überschriften kompakter */
       h1 {
         font-size: 1.6rem;
         margin-bottom: 25px;
       }
+
       h2 {
         font-size: 1.3rem;
         margin-bottom: 0.8rem;
       }
 
-      /* Buttons auf der Seite */
       .button {
         font-size: 1.2rem;
         padding: 18px 25px;
         width: 100%;
-        max-width: none;
         margin: 8px 0;
         box-sizing: border-box;
       }
 
-      /* Cookie Banner */
       .cc-window.cc-floating {
         padding: 1em !important;
       }
@@ -131,7 +136,7 @@
       .cc-btn.cc-dismiss {
         font-size: 1.4rem !important;
         padding: 15px 20px !important;
-        min-height: 44px !important; /* Fingerfreundlich */
+        min-height: 44px !important;
       }
     }
   </style>
@@ -151,67 +156,63 @@
   </section>
 
   <script>
+    // =========================
+    // Buttons aktivieren/deaktivieren
+    // =========================
+    function setButtonsEnabled(enabled) {
+      const buttons = [
+        document.getElementById('btnZentrale'),
+        document.getElementById('btnRegional'),
+        document.getElementById('btnVereinsliste')
+      ];
+      buttons.forEach(btn => {
+        if (btn) {
+          btn.classList.toggle('enabled', enabled);
+        }
+      });
+    }
+
+    // =========================
+    // Cookie Banner Styles erzwingen
+    // =========================
+    function forceBannerStyles() {
+      const banner = document.querySelector('.cc-window.cc-floating');
+      if (!banner) return;
+
+      const btns = banner.querySelectorAll('.cc-btn');
+      banner.style.setProperty('width', '100%', 'important');
+      banner.style.setProperty('max-width', '100%', 'important');
+      banner.style.setProperty('left', '0', 'important');
+      banner.style.setProperty('right', '0', 'important');
+      banner.style.setProperty('border-radius', '0', 'important');
+      banner.style.setProperty('padding', '1.5em', 'important');
+      banner.style.setProperty('box-sizing', 'border-box', 'important');
+      banner.style.setProperty('text-align', 'center', 'important');
+
+      const message = banner.querySelector('.cc-message');
+      if (message) {
+        message.style.setProperty('font-size', '1.4rem', 'important');
+        message.style.setProperty('margin-bottom', '1em', 'important');
+      }
+
+      btns.forEach(btn => {
+        btn.style.setProperty('font-size', '3rem', 'important');
+        btn.style.setProperty('padding', '25px 40px', 'important');
+        btn.style.setProperty('width', '100%', 'important');
+        btn.style.setProperty('max-width', 'none', 'important');
+        btn.style.setProperty('box-sizing', 'border-box', 'important');
+        btn.style.setProperty('min-height', '70px', 'important');
+        btn.style.setProperty('border-radius', '0', 'important');
+        btn.style.setProperty('display', 'block', 'important');
+        btn.style.setProperty('margin', '0 auto', 'important');
+      });
+    }
+
+    // =========================
+    // Initialisierung
+    // =========================
     window.addEventListener('load', function () {
-      function setButtonsEnabled(enabled) {
-        const buttons = [
-          document.getElementById('btnZentrale'),
-          document.getElementById('btnRegional'),
-          document.getElementById('btnVereinsliste')
-        ];
-        buttons.forEach(btn => {
-          if (btn) {
-            if (enabled) {
-              btn.classList.add('enabled');
-            } else {
-              btn.classList.remove('enabled');
-            }
-          }
-        });
-      }
-
-      function forceBannerStyles() {
-        const banner = document.querySelector('.cc-window.cc-floating');
-        if (banner) {
-          banner.style.setProperty('width', '100%', 'important');
-          banner.style.setProperty('max-width', '100%', 'important');
-          banner.style.setProperty('left', '0', 'important');
-          banner.style.setProperty('right', '0', 'important');
-          banner.style.setProperty('border-radius', '0', 'important');
-          banner.style.setProperty('padding', '1.5em', 'important');
-          banner.style.setProperty('box-sizing', 'border-box', 'important');
-          banner.style.setProperty('text-align', 'center', 'important');
-        }
-        const message = banner?.querySelector('.cc-message');
-        if (message) {
-          message.style.setProperty('font-size', '1.4rem', 'important');
-          message.style.setProperty('margin-bottom', '1em', 'important');
-        }
-        const allowBtn = document.querySelector('.cc-btn.cc-allow');
-        if (allowBtn) {
-          allowBtn.style.setProperty('font-size', '3rem', 'important');
-          allowBtn.style.setProperty('padding', '25px 40px', 'important');
-          allowBtn.style.setProperty('width', '100%', 'important');
-          allowBtn.style.setProperty('max-width', 'none', 'important');
-          allowBtn.style.setProperty('box-sizing', 'border-box', 'important');
-          allowBtn.style.setProperty('min-height', '70px', 'important');
-          allowBtn.style.setProperty('border-radius', '0', 'important');
-          allowBtn.style.setProperty('display', 'block', 'important');
-          allowBtn.style.setProperty('margin', '0 auto', 'important');
-        }
-        const dismissBtn = document.querySelector('.cc-btn.cc-dismiss');
-        if (dismissBtn) {
-          dismissBtn.style.setProperty('font-size', '3rem', 'important');
-          dismissBtn.style.setProperty('padding', '25px 40px', 'important');
-          dismissBtn.style.setProperty('width', '100%', 'important');
-          dismissBtn.style.setProperty('max-width', 'none', 'important');
-          dismissBtn.style.setProperty('box-sizing', 'border-box', 'important');
-          dismissBtn.style.setProperty('min-height', '70px', 'important');
-          dismissBtn.style.setProperty('border-radius', '0', 'important');
-          dismissBtn.style.setProperty('display', 'block', 'important');
-          dismissBtn.style.setProperty('margin', '0 auto', 'important');
-        }
-      }
-
+      // MutationObserver für Banner
       const observer = new MutationObserver((mutations) => {
         mutations.forEach(mutation => {
           mutation.addedNodes.forEach(node => {
@@ -223,12 +224,10 @@
       });
       observer.observe(document.body, { childList: true, subtree: true });
 
-      if (localStorage.getItem('cookieConsent') === 'true') {
-        setButtonsEnabled(true);
-      } else {
-        setButtonsEnabled(false);
-      }
+      // Buttons nach CookieConsent setzen
+      setButtonsEnabled(localStorage.getItem('cookieConsent') === 'true');
 
+      // CookieConsent initialisieren
       window.cookieconsent.initialise({
         palette: {
           popup: { background: "#004f9f", text: "#ffffff" },
@@ -250,18 +249,12 @@
           forceBannerStyles();
         },
         onStatusChange: function () {
-          if (this.hasConsented()) {
-            localStorage.setItem('cookieConsent', 'true');
-            setButtonsEnabled(true);
-          } else {
-            localStorage.setItem('cookieConsent', 'false');
-            setButtonsEnabled(false);
-          }
+          const consent = this.hasConsented();
+          localStorage.setItem('cookieConsent', consent ? 'true' : 'false');
+          setButtonsEnabled(consent);
           forceBannerStyles();
         },
-        onPopupOpen: function () {
-          forceBannerStyles();
-        }
+        onPopupOpen: forceBannerStyles
       });
 
       forceBannerStyles();
