@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tag des Sports 2025 – Kartenauswahl</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script>
 
   <style>
     /* =========================
@@ -76,28 +76,37 @@
       /* Cookie Banner */
       .cc-window.cc-floating {
         width: 100% !important;
-        max-width: 100% !important;
+        max-width: none !important;
         left: 0 !important;
         right: 0 !important;
+        bottom: 0 !important;
         border-radius: 0 !important;
         padding: 1em !important;
         box-sizing: border-box !important;
         text-align: center !important;
+        font-size: 14px !important;
       }
       .cc-window.cc-floating .cc-message {
-        font-size: 1rem !important;
+        font-size: 14px !important;
         margin-bottom: 1em !important;
+        line-height: 1.2 !important;
       }
       .cc-btn.cc-allow,
       .cc-btn.cc-dismiss {
-        font-size: 1rem !important;
-        padding: 15px 25px !important;
-        width: 100% !important;
+        font-size: 14px !important;
+        padding: 10px 20px !important;
         min-height: 40px !important;
-        border-radius: 0 !important;
+        width: 100% !important;
         display: block !important;
-        margin: 0 auto !important;
+        margin: 0.2em auto !important;
+        border-radius: 0 !important;
         box-sizing: border-box !important;
+      }
+      .cc-compliance {
+        width: 100% !important;
+        max-width: none !important;
+        left: 0 !important;
+        right: 0 !important;
       }
     }
 
@@ -129,27 +138,37 @@
 
       /* Mobile Cookie Banner */
       .cc-window.cc-floating {
-        padding: 0.5em 1em !important; /* Banner niedriger */
-        border-radius: 0 !important;
-        text-align: center !important;
-      }
-
-      .cc-window.cc-floating .cc-message {
-        font-size: 0.5rem !important;   /* kleinere Schrift */
-        margin-bottom: 0.5em !important;
-      }
-
-      .cc-btn.cc-allow,
-      .cc-btn.cc-dismiss {
-        font-size: 0.5rem !important;      /* kompakter Button */
-        padding: 10px 15px !important;   /* weniger Höhe */
-        min-height: 20px !important;     /* fingerfreundlich, aber kleiner */
         width: 100% !important;
         max-width: none !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        padding: 1em !important;
+        border-radius: 0 !important;
+        text-align: center !important;
+        font-size: 12px !important;
+      }
+      .cc-window.cc-floating .cc-message {
+        font-size: 12px !important;
+        margin-bottom: 0.5em !important;
+        line-height: 1.2 !important;
+      }
+      .cc-btn.cc-allow,
+      .cc-btn.cc-dismiss {
+        font-size: 12px !important;
+        padding: 8px 12px !important;
+        min-height: 36px !important;
+        width: 100% !important;
         display: block !important;
-        margin: 0 auto !important;
+        margin: 0.2em auto !important;
         border-radius: 0 !important;
         box-sizing: border-box !important;
+      }
+      .cc-compliance {
+        width: 100% !important;
+        max-width: none !important;
+        left: 0 !important;
+        right: 0 !important;
       }
     }
   </style>
@@ -192,40 +211,41 @@
       const banner = document.querySelector('.cc-window.cc-floating');
       if (!banner) return;
 
-      const btns = banner.querySelectorAll('.cc-btn');
-
       // Banner selbst
-      banner.style.setProperty('width', '100%', 'important');
-      banner.style.setProperty('padding', '1.5em', 'important');
-      banner.style.setProperty('border-radius', '0', 'important');
-      banner.style.setProperty('text-align', 'center', 'important');
+      Object.assign(banner.style, {
+        width: '100%',
+        maxWidth: 'none',
+        left: '0',
+        right: '0',
+        bottom: '0',
+        padding: '1em',
+        borderRadius: '0',
+        textAlign: 'center',
+        fontSize: window.innerWidth <= 480 ? '12px' : '14px'
+      });
 
       const message = banner.querySelector('.cc-message');
       if (message) {
-        message.style.setProperty('font-size', '1.4rem', 'important');
-        message.style.setProperty('margin-bottom', '1em', 'important');
+        Object.assign(message.style, {
+          fontSize: window.innerWidth <= 480 ? '12px' : '14px',
+          marginBottom: window.innerWidth <= 480 ? '0.5em' : '1em',
+          lineHeight: '1.2'
+        });
       }
 
+      const btns = banner.querySelectorAll('.cc-btn');
       btns.forEach(btn => {
-        if (window.innerWidth <= 480) {
-          btn.style.setProperty('font-size', '1rem', 'important');
-          btn.style.setProperty('padding', '10px 15px', 'important');
-          btn.style.setProperty('min-height', '36px', 'important');
-        } else if (window.innerWidth <= 786) {
-          btn.style.setProperty('font-size', '1.5rem', 'important');
-          btn.style.setProperty('padding', '30px 60px', 'important');
-          btn.style.setProperty('min-height', '40px', 'important');
-        } else {
-          btn.style.setProperty('font-size', '1.2rem', 'important');
-          btn.style.setProperty('padding', '20px 40px', 'important');
-          btn.style.setProperty('min-height', 'auto', 'important');
-        }
-        btn.style.setProperty('width', '100%', 'important');
-        btn.style.setProperty('max-width', 'none', 'important');
-        btn.style.setProperty('display', 'block', 'important');
-        btn.style.setProperty('margin', '0 auto', 'important');
-        btn.style.setProperty('border-radius', '0', 'important');
-        btn.style.setProperty('box-sizing', 'border-box', 'important');
+        Object.assign(btn.style, {
+          fontSize: window.innerWidth <= 480 ? '12px' : '14px',
+          padding: window.innerWidth <= 480 ? '8px 12px' : '10px 20px',
+          minHeight: window.innerWidth <= 480 ? '36px' : '40px',
+          width: '100%',
+          maxWidth: 'none',
+          display: 'block',
+          margin: '0.2em auto',
+          borderRadius: '0',
+          boxSizing: 'border-box'
+        });
       });
     }
 
@@ -237,7 +257,7 @@
       const observer = new MutationObserver((mutations) => {
         mutations.forEach(mutation => {
           mutation.addedNodes.forEach(node => {
-            if (node.nodeType === 1 && node.classList.contains('cc-window')) {
+            if (node.nodeType === 1 && node.classList && node.classList.contains('cc-window')) {
               forceBannerStyles();
             }
           });
@@ -268,6 +288,7 @@
             setButtonsEnabled(true);
           }
           forceBannerStyles();
+          setTimeout(forceBannerStyles, 100);
         },
         onStatusChange: function () {
           const consent = this.hasConsented();
@@ -275,10 +296,11 @@
           setButtonsEnabled(consent);
           forceBannerStyles();
         },
-        onPopupOpen: forceBannerStyles
+        onPopupOpen: function() {
+          forceBannerStyles();
+          setTimeout(forceBannerStyles, 100);
+        }
       });
-
-      forceBannerStyles();
     });
   </script>
 </body>
