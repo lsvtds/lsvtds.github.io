@@ -2,99 +2,214 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tag des Sports 2025 – Kartenauswahl</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css" />
   <style>
     /* =========================
-       Grundstyles (Desktop)
+       Grundstyles (Farben & Schrift)
        ========================= */
+    :root {
+      --primary-color: #004f9f;
+      --primary-light: #0077cc;
+      --primary-dark: #002d6d;
+      --background: #f9f9f9;
+      --text: #333;
+      --text-light: #666;
+      --white: #ffffff;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
     body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 40px 20px;
-      background: #f9f9f9;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--background);
       margin: 0;
+      padding: 0;
     }
+
+    /* Header & Titel */
+    .header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: var(--white);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 2rem;
+    }
+
     h1 {
-      font-size: 2rem;
-      margin-bottom: 40px;
-    }
-    h2 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: #004f9f;
-    }
-    section {
-      margin-bottom: 5rem;
-    }
-    .button {
+      color: var(--primary-dark);
+      font-size: 2.2rem;
+      margin: 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--primary-light);
       display: inline-block;
-      margin: 0 0.5rem;
-      padding: 20px 40px;
-      font-size: 1.2rem;
-      background-color: #0077cc;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      transition: background-color 0.3s;
-      cursor: not-allowed;
-      opacity: 0.6;
     }
+
+    /* Sections */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+    }
+
+    .section-title {
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-light), var(--primary-dark));
+    }
+
+    /* Buttons */
+    .button-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .button {
+      display: block;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      border: none;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: var(--box-shadow);
+      cursor: not-allowed;
+      opacity: 0.7;
+      pointer-events: none;
+      min-width: 200px;
+    }
+
     .button.enabled {
       cursor: pointer;
       opacity: 1;
+      pointer-events: auto;
     }
-    .button:hover.enabled {
-      background-color: #005fa3;
+
+    .button.enabled:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
     }
-    /* =========================
-       Tablet & Mobile Styles
-       ========================= */
-    @media (max-width: 786px) {
-      .button {
-        font-size: 1.5rem;
-        padding: 30px 60px;
-        width: 100%;
-        margin: 8px 0;
-        box-sizing: border-box;
-      }
-      .cc-window.cc-floating {
-        width: 100% !important;
-        max-width: none !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        border-radius: 0 !important;
-      }
+
+    /* Cookie Banner */
+    .cc-window {
+      font-family: 'Segoe UI', Arial, sans-serif !important;
+      border-radius: var(--border-radius) !important;
+      border: none !important;
+      box-shadow: var(--box-shadow) !important;
     }
-    @media (max-width: 480px) {
-      body {
-        padding: 15px 10px;
-      }
+
+    .cc-message {
+      font-size: 0.95rem !important;
+      line-height: 1.5 !important;
+    }
+
+    .cc-btn {
+      font-family: 'Segoe UI', Arial, sans-serif !important;
+      font-weight: 600 !important;
+      border-radius: var(--border-radius) !important;
+      padding: 0.6rem 1.2rem !important;
+      margin-left: 0.5rem !important;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      background-color: var(--white);
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Anpassungen */
+    @media (max-width: 768px) {
       h1 {
-        font-size: 1.6rem;
-        margin-bottom: 25px;
+        font-size: 1.8rem;
       }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .button-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
       .button {
-        font-size: 1.2rem;
-        padding: 18px 25px;
+        width: 100%;
+        max-width: 300px;
+        padding: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 1.5rem 0.5rem;
+      }
+
+      .button {
+        font-size: 1rem;
+        padding: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Digitales Angebot für den Tag des Sports 2025</h1>
-  <section>
-    <h2>zentral</h2>
-    <a href="zentral.html" id="btnZentrale" class="button" aria-disabled="true" tabindex="-1">Zentrale Karte anzeigen</a>
-    <a href="https://lsvtds.github.io/vereinsliste/" id="btnVereinsliste" class="button" aria-disabled="true" tabindex="-1">Vereinsliste</a>
-  </section>
-  <section>
-    <h2>regional</h2>
-    <a href="regional.html" id="btnRegional" class="button" aria-disabled="true" tabindex="-1">Regionale Karte anzeigen</a>
+  <!-- Header -->
+  <header class="header">
+    <h1>Digitales Angebot für den Tag des Sports 2025</h1>
+  </header>
+
+  <!-- Zentrale Angebote -->
+  <section class="section">
+    <h2 class="section-title">Zentral</h2>
+    <div class="button-grid">
+      <a href="zentral.html" id="btnZentrale" class="button" aria-disabled="true" tabindex="-1">Zentrale Karte anzeigen</a>
+      <a href="https://lsvtds.github.io/vereinsliste/" id="btnVereinsliste" class="button" aria-disabled="true" tabindex="-1">Vereinsliste</a>
+    </div>
   </section>
 
+  <!-- Regionale Angebote -->
+  <section class="section">
+    <h2 class="section-title">Regional</h2>
+    <div class="button-grid">
+      <a href="regional.html" id="btnRegional" class="button" aria-disabled="true" tabindex="-1">Regionale Karte anzeigen</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Landessportverband Schleswig-Holstein | <a href="https://lsvtds.github.io/datenschutz.html" target="_blank">Datenschutz</a></p>
+  </footer>
+
+  <!-- Cookie Consent -->
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script>
   <script>
     // =========================
@@ -128,7 +243,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID', { 'anonymize_ip': true }); // IP-Anonymisierung
+      gtag('config', 'GA_MEASUREMENT_ID', { 'anonymize_ip': true });
     }
 
     // =========================
@@ -137,17 +252,17 @@
     window.addEventListener('load', function() {
       window.cookieconsent.initialise({
         palette: {
-          popup: { background: "#004f9f", text: "#ffffff" },
-          button: { background: "#007bff", text: "#ffffff" }
+          popup: { background: "var(--white)", text: "var(--text)" },
+          button: { background: "var(--primary-light)", text: "var(--white)" }
         },
         theme: "classic",
         position: "bottom",
         content: {
-          message: "Diese Website verwendet Cookies für Statistiken (Google Analytics). Mit Klick auf 'Verstanden' willigen Sie ein.",
+          message: "Diese Website verwendet Cookies für Statistiken (Google Analytics). Mit Klick auf 'Verstanden' willigen Sie ein. ",
           dismiss: "Verstanden",
           link: "Mehr erfahren",
-          href: "https://lsvtds.github.io/datenschutz.html", // Externer Link zur Datenschutzseite
-          target: "_blank" // Link öffnet in neuem Tab
+          href: "https://lsvtds.github.io/datenschutz.html",
+          target: "_blank"
         },
         onInitialise: function() {
           const consent = this.hasConsented();
