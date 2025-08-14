@@ -4,10 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tag des Sports 2025 – Kartenauswahl</title>
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script>
-
   <style>
     /* =========================
        Grundstyles (Desktop)
@@ -17,23 +14,20 @@
       text-align: center;
       padding: 40px 20px;
       background: #f9f9f9;
+      margin: 0;
     }
-
     h1 {
       font-size: 2rem;
       margin-bottom: 40px;
     }
-
     h2 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
       color: #004f9f;
     }
-
     section {
       margin-bottom: 5rem;
     }
-
     .button {
       display: inline-block;
       margin: 0 0.5rem;
@@ -46,34 +40,25 @@
       transition: background-color 0.3s;
       cursor: not-allowed;
       opacity: 0.6;
-      pointer-events: none;
     }
-
     .button.enabled {
       cursor: pointer;
       opacity: 1;
-      pointer-events: auto;
     }
-
     .button:hover.enabled {
       background-color: #005fa3;
     }
-
     /* =========================
-       Tablet Styles (max-width: 786px)
+       Tablet & Mobile Styles
        ========================= */
     @media (max-width: 786px) {
-      body {
-        padding-top: 20px;
-        padding-bottom: 40px;
-      }
-
       .button {
         font-size: 1.5rem;
         padding: 30px 60px;
+        width: 100%;
+        margin: 8px 0;
+        box-sizing: border-box;
       }
-
-      /* Cookie Banner */
       .cc-window.cc-floating {
         width: 100% !important;
         max-width: none !important;
@@ -81,122 +66,36 @@
         right: 0 !important;
         bottom: 0 !important;
         border-radius: 0 !important;
-        padding: 1em !important;
-        box-sizing: border-box !important;
-        text-align: center !important;
-        font-size: 14px !important;
-      }
-      .cc-window.cc-floating .cc-message {
-        font-size: 14px !important;
-        margin-bottom: 1em !important;
-        line-height: 1.2 !important;
-      }
-      .cc-btn.cc-allow,
-      .cc-btn.cc-dismiss {
-        font-size: 14px !important;
-        padding: 10px 20px !important;
-        min-height: 40px !important;
-        width: 100% !important;
-        display: block !important;
-        margin: 0.2em auto !important;
-        border-radius: 0 !important;
-        box-sizing: border-box !important;
-      }
-      .cc-compliance {
-        width: 100% !important;
-        max-width: none !important;
-        left: 0 !important;
-        right: 0 !important;
       }
     }
-
-    /* =========================
-       Smartphone Styles (max-width: 480px)
-       ========================= */
-@media (max-width: 480px) {
-  body {
-    padding: 15px 10px;
-  }
-
-  h1 {
-    font-size: 1.6rem;
-    margin-bottom: 25px;
-  }
-
-  h2 {
-    font-size: 1.3rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .button {
-    font-size: 1.2rem;
-    padding: 18px 25px;
-    width: 100%;
-    margin: 8px 0;
-    box-sizing: border-box;
-  }
-
-  /* Mobile Cookie Banner - höher und mit größerem Button */
-  .cc-window.cc-floating {
-    width: 100% !important;
-    max-width: none !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    padding: 1.2em !important; /* mehr Padding für Höhe */
-    border-radius: 0 !important;
-    text-align: center !important;
-    font-size: 13px !important; /* etwas größere Schrift */
-    background-color: #004f9f !important;
-  }
-  .cc-window.cc-floating .cc-message {
-    font-size: 13px !important;
-    margin-bottom: 0.8em !important;
-    line-height: 1.3 !important;
-  }
-  .cc-btn.cc-allow,
-  .cc-btn.cc-dismiss {
-    font-size: 14px !important;
-    padding: 14px 24px !important; /* mehr Padding für Größe */
-    min-height: 48px !important; /* deutlich höher */
-    width: 100% !important;
-    display: block !important;
-    margin: 0.4em auto !important;
-    border-radius: 0 !important;
-    box-sizing: border-box !important;
-    font-weight: bold !important;
-  }
-  /* Verstanden-Button besonders groß und auffällig */
-  .cc-btn.cc-dismiss {
-    font-size: 15px !important;
-    padding: 16px 30px !important;
-    min-height: 52px !important;
-    background-color: #007bff !important;
-    border: 2px solid #fff !important;
-  }
-  .cc-compliance {
-    width: 100% !important;
-    max-width: none !important;
-    left: 0 !important;
-    right: 0 !important;
-  }
-}
+    @media (max-width: 480px) {
+      body {
+        padding: 15px 10px;
+      }
+      h1 {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+      }
+      .button {
+        font-size: 1.2rem;
+        padding: 18px 25px;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>Digitales Angebot für den Tag des Sports 2025</h1>
-
   <section>
     <h2>zentral</h2>
-    <a href="zentral.html" id="btnZentrale" class="button">Zentrale Karte anzeigen</a>
-    <a href="https://lsvtds.github.io/vereinsliste/" id="btnVereinsliste" class="button">Vereinsliste</a>
+    <a href="zentral.html" id="btnZentrale" class="button" aria-disabled="true" tabindex="-1">Zentrale Karte anzeigen</a>
+    <a href="https://lsvtds.github.io/vereinsliste/" id="btnVereinsliste" class="button" aria-disabled="true" tabindex="-1">Vereinsliste</a>
   </section>
-
   <section>
     <h2>regional</h2>
-    <a href="regional.html" id="btnRegional" class="button">Regionale Karte anzeigen</a>
+    <a href="regional.html" id="btnRegional" class="button" aria-disabled="true" tabindex="-1">Regionale Karte anzeigen</a>
   </section>
 
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script>
   <script>
     // =========================
     // Buttons aktivieren/deaktivieren
@@ -208,77 +107,34 @@
         document.getElementById('btnVereinsliste')
       ];
       buttons.forEach(btn => {
-        if (btn) {
-          btn.classList.toggle('enabled', enabled);
-        }
+        btn.classList.toggle('enabled', enabled);
+        btn.setAttribute('aria-disabled', !enabled);
+        btn.tabIndex = enabled ? 0 : -1;
       });
     }
 
     // =========================
-    // Cookie Banner Styles erzwingen
+    // Google Analytics dynamisch laden
     // =========================
-    function forceBannerStyles() {
-      const banner = document.querySelector('.cc-window.cc-floating');
-      if (!banner) return;
+    function loadGoogleAnalytics() {
+      if (window.gaLoaded) return;
+      window.gaLoaded = true;
 
-      // Banner selbst
-      Object.assign(banner.style, {
-        width: '100%',
-        maxWidth: 'none',
-        left: '0',
-        right: '0',
-        bottom: '0',
-        padding: '1em',
-        borderRadius: '0',
-        textAlign: 'center',
-        fontSize: window.innerWidth <= 480 ? '12px' : '14px'
-      });
+      const script = document.createElement('script');
+      script.src = "https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"; // Ersetze mit deiner GA-ID
+      script.async = true;
+      document.head.appendChild(script);
 
-      const message = banner.querySelector('.cc-message');
-      if (message) {
-        Object.assign(message.style, {
-          fontSize: window.innerWidth <= 480 ? '12px' : '14px',
-          marginBottom: window.innerWidth <= 480 ? '0.5em' : '1em',
-          lineHeight: '1.2'
-        });
-      }
-
-      const btns = banner.querySelectorAll('.cc-btn');
-      btns.forEach(btn => {
-        Object.assign(btn.style, {
-          fontSize: window.innerWidth <= 480 ? '12px' : '14px',
-          padding: window.innerWidth <= 480 ? '8px 12px' : '10px 20px',
-          minHeight: window.innerWidth <= 480 ? '36px' : '40px',
-          width: '100%',
-          maxWidth: 'none',
-          display: 'block',
-          margin: '0.2em auto',
-          borderRadius: '0',
-          boxSizing: 'border-box'
-        });
-      });
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID', { 'anonymize_ip': true }); // IP-Anonymisierung
     }
 
     // =========================
-    // Initialisierung
+    // Cookie Banner initialisieren
     // =========================
-    window.addEventListener('load', function () {
-      // MutationObserver für Banner
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach(mutation => {
-          mutation.addedNodes.forEach(node => {
-            if (node.nodeType === 1 && node.classList && node.classList.contains('cc-window')) {
-              forceBannerStyles();
-            }
-          });
-        });
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-
-      // Buttons nach CookieConsent setzen
-      setButtonsEnabled(localStorage.getItem('cookieConsent') === 'true');
-
-      // CookieConsent initialisieren
+    window.addEventListener('load', function() {
       window.cookieconsent.initialise({
         palette: {
           popup: { background: "#004f9f", text: "#ffffff" },
@@ -287,28 +143,25 @@
         theme: "classic",
         position: "bottom",
         content: {
-          message: "Diese Website verwendet Cookies, um Ihnen die bestmögliche Nutzung zu ermöglichen.",
+          message: "Diese Website verwendet Cookies für Statistiken (Google Analytics). Mit Klick auf 'Verstanden' willigen Sie ein.",
           dismiss: "Verstanden",
           link: "Mehr erfahren",
-          href: "/datenschutz.html"
+          href: "https://lsvtds.github.io/datenschutz.html", // Externer Link zur Datenschutzseite
+          target: "_blank" // Link öffnet in neuem Tab
         },
-        onInitialise: function () {
-          if (this.hasConsented()) {
+        onInitialise: function() {
+          const consent = this.hasConsented();
+          if (consent) {
             localStorage.setItem('cookieConsent', 'true');
             setButtonsEnabled(true);
+            loadGoogleAnalytics();
           }
-          forceBannerStyles();
-          setTimeout(forceBannerStyles, 100);
         },
-        onStatusChange: function () {
+        onStatusChange: function() {
           const consent = this.hasConsented();
           localStorage.setItem('cookieConsent', consent ? 'true' : 'false');
           setButtonsEnabled(consent);
-          forceBannerStyles();
-        },
-        onPopupOpen: function() {
-          forceBannerStyles();
-          setTimeout(forceBannerStyles, 100);
+          if (consent) loadGoogleAnalytics();
         }
       });
     });
