@@ -243,6 +243,13 @@
               button.setAttribute('aria-disabled', 'false');
               button.setAttribute('tabindex', '0');
             });
+          } else {
+            // Buttons deaktivieren, wenn Cookies abgelehnt wurden
+            document.querySelectorAll('.button').forEach(function(button) {
+              button.classList.remove('enabled');
+              button.setAttribute('aria-disabled', 'true');
+              button.setAttribute('tabindex', '-1');
+            });
           }
         },
         onInitialise: function(status) {
@@ -254,6 +261,14 @@
               button.setAttribute('tabindex', '0');
             });
           }
+        },
+        showLink: true,
+        dismissOnScroll: false,
+        dismissOnTimeout: false,
+        elements: {
+          dismiss: '<span aria-label="dismiss">{{dismiss}}</span>',
+          deny: '<span aria-label="deny">{{deny}}</span>',
+          link: '<a aria-label="learn more about cookies" tabindex="0" class="cc-link">{{link}}</a>'
         }
       });
     });
