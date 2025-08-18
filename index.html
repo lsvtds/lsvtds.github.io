@@ -198,8 +198,8 @@
   <section class="section">
     <h2 class="section-title">Zentral</h2>
     <div class="button-grid">
-      <a href="zentral.html" id="btnZentrale" class="button enabled" aria-disabled="false" tabindex="0">Zentrale Karte anzeigen</a>
-      <a href="https://lsvtds.github.io/vereinsliste/" id="btnVereinsliste" class="button enabled" aria-disabled="false" tabindex="0">Vereinsliste</a>
+      <a href="zentral.html" id="btnZentrale" class="button" aria-disabled="true" tabindex="-1">Zentrale Karte anzeigen</a>
+      <a href="https://lsvtds.github.io/vereinsliste/" id="btnVereinsliste" class="button" aria-disabled="true" tabindex="-1">Vereinsliste</a>
     </div>
   </section>
 
@@ -207,7 +207,7 @@
   <section class="section">
     <h2 class="section-title">Regional</h2>
     <div class="button-grid">
-      <a href="regional.html" id="btnRegional" class="button enabled" aria-disabled="false" tabindex="0">Regionale Karte anzeigen</a>
+      <a href="regional.html" id="btnRegional" class="button" aria-disabled="true" tabindex="-1">Regionale Karte anzeigen</a>
     </div>
   </section>
 
@@ -228,11 +228,32 @@
         theme: "classic",
         position: "bottom",
         content: {
-          message: "Diese Website verwendet Cookies für technische Zwecke. ",
-          dismiss: "Verstanden",
+          message: "Diese Website verwendet Cookies für technische Zwecke. Bitte akzeptieren Sie die Cookies, um die Seite vollumfänglich nutzen zu können.",
+          dismiss: "Akzeptieren",
+          deny: "Ablehnen",
           link: "Mehr erfahren",
           href: "https://lsvtds.github.io/datenschutz.html",
           target: "_blank"
+        },
+        onStatusChange: function(status) {
+          if (this.hasConsented()) {
+            // Buttons aktivieren, wenn Cookies akzeptiert wurden
+            document.querySelectorAll('.button').forEach(function(button) {
+              button.classList.add('enabled');
+              button.setAttribute('aria-disabled', 'false');
+              button.setAttribute('tabindex', '0');
+            });
+          }
+        },
+        onInitialise: function(status) {
+          // Buttons bleiben deaktiviert, wenn Cookies abgelehnt wurden
+          if (this.hasConsented()) {
+            document.querySelectorAll('.button').forEach(function(button) {
+              button.classList.add('enabled');
+              button.setAttribute('aria-disabled', 'false');
+              button.setAttribute('tabindex', '0');
+            });
+          }
         }
       });
     });
