@@ -31,21 +31,22 @@
     /* Header & Titel */
     .header {
       text-align: center;
-      padding: 1rem;
+      padding: 2rem 1rem 1rem;
       background-color: var(--white);
       box-shadow: var(--box-shadow);
       margin-bottom: 2rem;
+      position: relative;
     }
-    .logo-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+    .logo-left {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      height: 100px;
     }
-    .logo-left, .logo-right {
+    .logo-right {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
       height: 100px;
     }
     h1 {
@@ -146,13 +147,19 @@
     }
     /* Responsive Anpassungen */
     @media (max-width: 768px) {
-      .logo-container {
-        flex-direction: row;
-        justify-content: center;
-        gap: 1rem;
+      .header {
+        padding: 1rem 0.5rem;
       }
+      /* Logos auf Mobilgeräten nebeneinander und größer */
       .logo-left, .logo-right {
-        height: 90px;
+        position: static;
+        height: 80px;
+        display: inline-block;
+        margin: 0 1rem;
+      }
+      .logo-container {
+        text-align: center;
+        margin-bottom: 1rem;
       }
       h1 {
         font-size: 1.8rem;
@@ -171,15 +178,8 @@
       }
     }
     @media (max-width: 480px) {
-      .header {
-        padding: 1rem 0.5rem;
-      }
       .logo-left, .logo-right {
-        height: 60px;
-      }
-      .button {
-        font-size: 1rem;
-        padding: 1rem;
+        height: 70px;
       }
     }
   </style>
