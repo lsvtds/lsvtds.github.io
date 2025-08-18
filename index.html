@@ -35,6 +35,19 @@
       background-color: var(--white);
       box-shadow: var(--box-shadow);
       margin-bottom: 2rem;
+      position: relative;
+    }
+    .logo-left {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      height: 80px;
+    }
+    .logo-right {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      height: 80px;
     }
     h1 {
       color: var(--primary-dark);
@@ -149,6 +162,10 @@
         max-width: 300px;
         padding: 1.2rem;
       }
+      .logo-left, .logo-right {
+        height: 60px;
+        top: 0.5rem;
+      }
     }
     @media (max-width: 480px) {
       .header {
@@ -162,8 +179,10 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Header mit Logos -->
   <header class="header">
+    <img src="logo-lsv.jpg" alt="Landessportverband Schleswig-Holstein" class="logo-left">
+    <img src="logo-tag-des-sport25.png" alt="Tag des Sports 2025" class="logo-right">
     <h1>Digitales Angebot für den Tag des Sports 2025</h1>
   </header>
   <!-- Zentrale Angebote -->
