@@ -31,23 +31,19 @@
     /* Header & Titel */
     .header {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 1rem;
       background-color: var(--white);
       box-shadow: var(--box-shadow);
       margin-bottom: 2rem;
-      position: relative;
     }
-    .logo-left {
-      position: absolute;
-      left: 1rem;
-      top: 1rem;
-      height: 80px;
+    .logo-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
     }
-    .logo-right {
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-      height: 80px;
+    .logo-left, .logo-right {
+      height: 100px;
     }
     h1 {
       color: var(--primary-dark);
@@ -147,6 +143,14 @@
     }
     /* Responsive Anpassungen */
     @media (max-width: 768px) {
+      .logo-container {
+        flex-direction: column;
+        margin-bottom: 1rem;
+      }
+      .logo-left, .logo-right {
+        height: 80px;
+        margin: 0.5rem auto;
+      }
       h1 {
         font-size: 1.8rem;
       }
@@ -162,14 +166,10 @@
         max-width: 300px;
         padding: 1.2rem;
       }
-      .logo-left, .logo-right {
-        height: 60px;
-        top: 0.5rem;
-      }
     }
     @media (max-width: 480px) {
       .header {
-        padding: 1.5rem 0.5rem;
+        padding: 1rem 0.5rem;
       }
       .button {
         font-size: 1rem;
@@ -181,10 +181,13 @@
 <body>
   <!-- Header mit Logos -->
   <header class="header">
-    <img src="logo-lsv.jpg" alt="Landessportverband Schleswig-Holstein" class="logo-left">
-    <img src="logo-tag-des-sport25.png" alt="Tag des Sports 2025" class="logo-right">
+    <div class="logo-container">
+      <img src="logo-lsv.jpg" alt="Landessportverband Schleswig-Holstein" class="logo-left">
+      <img src="logo-tag-des-sport25.png" alt="Tag des Sports 2025" class="logo-right">
+    </div>
     <h1>Digitales Angebot für den Tag des Sports 2025</h1>
   </header>
+
   <!-- Zentrale Angebote -->
   <section class="section">
     <h2 class="section-title">Zentral</h2>
@@ -193,6 +196,7 @@
       <a href="https://lsvtds.github.io/vereinsliste/" id="btnVereinsliste" class="button enabled" aria-disabled="false" tabindex="0">Vereinsliste</a>
     </div>
   </section>
+
   <!-- Regionale Angebote -->
   <section class="section">
     <h2 class="section-title">Regional</h2>
@@ -200,16 +204,15 @@
       <a href="regional.html" id="btnRegional" class="button enabled" aria-disabled="false" tabindex="0">Regionale Karte anzeigen</a>
     </div>
   </section>
+
   <!-- Footer -->
   <footer class="footer">
     <p>© 2025 Landessportverband Schleswig-Holstein | <a href="https://lsvtds.github.io/datenschutz.html" target="_blank">Datenschutz</a></p>
   </footer>
+
   <!-- Cookie Consent -->
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script>
   <script>
-    // =========================
-    // Cookie Banner initialisieren (nur für Info, keine Tracking-Funktion)
-    // =========================
     window.addEventListener('load', function() {
       window.cookieconsent.initialise({
         palette: {
