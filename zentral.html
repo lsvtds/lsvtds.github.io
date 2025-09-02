@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Zentrale Karte – Tag des Sports 2025</title>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NBSFW6WCB5');
-  </script>
-
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <style>
-    body { margin: 0; }
-    iframe { width: 100%; height: 100vh; border: none; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    #map {
+      width: 100%;
+      height: 100vh;
+      touch-action: manipulation;
+    }
+    .header {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 5px 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
-  <iframe
-    src="https://umap.openstreetmap.fr/de/map/tag-des-sports-2025_946293?scrollWheelZoom=true&zoomControl=true&moreControl=true&captionMenus=true&onLoadPanel=none"
-    allowfullscreen>
-  </iframe>
+  <div class="header">
+    Zentrale Karte – Tag des Sports 2025
+  </div>
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    // Karte initialisieren (Beispielkoordinaten für Kiel)
+    var map = L.map('map', {
+      touchZoom: true,
+      scrollWheelZoom: false
+    }).setView([54.32, 10.14], 13);
+
+    // OpenStreetMap-Kacheln hinzufügen
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Mitwirkende',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Optional: Marker für Kiel hinzufügen
+    L.marker([54.32, 10.14]).addTo(map)
+      .bindPopup('Tag des Sports 2025 – Kiel')
+      .openPopup();
+  </script>
 </body>
 </html>
