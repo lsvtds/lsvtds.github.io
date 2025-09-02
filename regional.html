@@ -1,27 +1,59 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Regionale Karte – Tag des Sports 2025</title>
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBSFW6WCB5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-NBSFW6WCB5');
   </script>
-
   <style>
-    body { margin: 0; }
-    iframe { width: 100%; height: 100vh; border: none; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      overflow: hidden;
+    }
+    .header {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 5px 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+      text-align: center;
+    }
+    .map-container {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      touch-action: manipulation;
+    }
   </style>
 </head>
 <body>
-  <iframe
-    src="https://umap.openstreetmap.fr/de/map/regional-tag-des-sports-2025_1221852?scrollWheelZoom=true&zoomControl=true&moreControl=true&captionMenus=true&onLoadPanel=none"
-    allowfullscreen>
-  </iframe>
+  <div class="header">
+    Regionale Karte – Tag des Sports 2025
+  </div>
+  <div class="map-container">
+    <iframe
+      src="https://umap.openstreetmap.fr/de/map/regional-tag-des-sports-2025_1221852?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false"
+      allowfullscreen
+    ></iframe>
+  </div>
 </body>
 </html>
