@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bühnenauftritt Buchung</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        form { max-width: 500px; margin: 20px auto; }
+        label, input, select, button { display: block; width: 100%; margin-bottom: 10px; }
+        button { background-color: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Bühnenauftritt Buchung</h1>
+    <form action="#" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="slot">Zeitslot:</label>
+        <select id="slot" name="slot" required>
+            <option value="">Bitte wählen</option>
+            <option value="08.01.2026-14:00">08.01.2026, 14:00–15:00</option>
+            <option value="08.01.2026-15:00">08.01.2026, 15:00–16:00</option>
+            <!-- Weitere Slots hier einfügen -->
+        </select>
+
+        <button type="submit">Buchen</button>
+    </form>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Vielen Dank für Ihre Buchung! Wir melden uns bei Ihnen.');
+            // Hier später die Logik für die Buchungsbestätigung einfügen
+        });
+    </script>
+</body>
+</html>
